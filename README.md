@@ -1,2 +1,4 @@
-# Mktraders-
-It stands for a deriv site name
+
+package.json
+src/
+public/
