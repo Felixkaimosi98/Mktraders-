@@ -1,4 +1,3 @@
+# MKTraders - GitHub-ready package
 
-package.json
-src/
-public/
+See DEPLOY.md for deploy instructions.
