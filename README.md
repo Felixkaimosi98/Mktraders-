@@ -1,3 +1,3 @@
-# MKTraders - GitHub-ready package
+# MKTraders - Render-ready full stack (Live + Demo)
 
-See DEPLOY.md for deploy instructions.
+Deploy instructions are in the README. Set DERIV_API_TOKEN in Render environment variables.

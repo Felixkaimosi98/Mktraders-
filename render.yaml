@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mktraders-backend
+    env: node
+    plan: free
+    branch: main
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DERIV_APP_ID
+        value: "107421"
+      - key: DERIV_API_TOKEN
+        value: "YOUR_DERIV_API_TOKEN_HERE"

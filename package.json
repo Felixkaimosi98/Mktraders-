@@ -1,14 +1,15 @@
 {
-  "name": "mktraders-full",
+  "name": "mktraders-server",
   "version": "1.0.0",
-  "private": true,
+  "main": "server.js",
   "scripts": {
-    "start": "concurrently \"npm:server\" \"npm:client\"",
-    "bootstrap": "cd server && npm install && cd ../client && npm install",
-    "server": "cd server && node index.js",
-    "client": "cd client && npm run dev"
+    "start": "node server.js"
   },
-  "devDependencies": {
-    "concurrently": "^7.6.0"
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "ws": "^8.13.0",
+    "dotenv": "^16.0.0",
+    "body-parser": "^1.20.2"
   }
 }
