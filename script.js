@@ -1,1 +1,34 @@
-const out = document.getElementById('out'); const balBtn = document.getElementById('bal'); const buyBtn = document.getElementById('buy'); const propBtn = document.getElementById('proposal'); const modeSel = document.getElementById('mode'); const symbol = document.getElementById('symbol'); const amount = document.getElementById('amount'); const duration = document.getElementById('duration'); function log(m){ out.textContent = m + '\n' + out.textContent; } propBtn.addEventListener('click', async ()=>{ log('Requesting proposal...'); try{ const res = await fetch('/api/proposal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({symbol:symbol.value, amount:Number(amount.value), duration:Number(duration.value), contract_type:'CALL'})}); const j = await res.json(); log('Proposal: '+JSON.stringify(j)); }catch(e){ log('Error: '+e.message); } }); buyBtn.addEventListener('click', async ()=>{ log('Placing buy...'); try{ const res = await fetch('/api/buy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ proposal_id: null, amount:Number(amount.value) })}); const j = await res.json(); log('Buy: '+JSON.stringify(j)); }catch(e){ log('Error: '+e.message); } }); balBtn.addEventListener('click', async ()=>{ log('Checking balance...'); try{ const res = await fetch('/api/balance'); const j = await res.json(); log('Balance: '+JSON.stringify(j)); }catch(e){ log('Error: '+e.message); } }); (async ()=>{ try{ const s = await fetch('/api/history'); const h = await s.json(); if(Array.isArray(h)) { log('Loaded history: '+h.length+' records'); } }catch(e){} })();
+// Deriv API connection for live balance
+const app_id = import.meta.env.VITE_DERIV_APP_ID || process.env.DERIV_APP_ID || "107421";
+const token = import.meta.env.VITE_DERIV_API_TOKEN || process.env.DERIV_API_TOKEN;
+
+if (!token) {
+  console.error("❌ Deriv API token missing. Add it in Render Environment Variables.");
+}
+
+const connection = new WebSocket(`wss://ws.derivws.com/websockets/v3?app_id=${app_id}`);
+
+connection.onopen = () => {
+  console.log("✅ Connected to Deriv API");
+  connection.send(JSON.stringify({ authorize: token }));
+};
+
+connection.onmessage = (msg) => {
+  const data = JSON.parse(msg.data);
+
+  if (data.error) {
+    console.error("❌ Deriv API Error:", data.error.message);
+    document.getElementById("balance").innerText = "Error loading balance";
+    return;
+  }
+
+  if (data.msg_type === "authorize") {
+    console.log("✅ Authorized successfully");
+    connection.send(JSON.stringify({ balance: 1, subscribe: 1 }));
+  }
+
+  if (data.msg_type === "balance") {
+    const balance_value = data.balance.balance;
+    document.getElementById("balance").innerText = `${balance_value} USD`;
+  }
+};
