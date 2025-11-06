@@ -87,6 +87,8 @@ app.post('/api/buy',(req,res)=>{
 
 app.get('/api/history',(req,res)=> res.json(readStore()));
 
-app.get('*',(req,res)=> res.sendFile(path.join(__dirname,'public','dashboard.html')));
+app.get('*',(req,res)=> app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
 
 app.listen(PORT, ()=> console.log('MKTraders Node server listening on', PORT));
