@@ -1,6 +1,7 @@
+
 services:
   - type: web
-    name: mktraders-backend
+    name: mktraders-node-both
     env: node
     plan: free
     branch: main

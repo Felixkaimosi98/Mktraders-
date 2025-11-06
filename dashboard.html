@@ -1,1 +1,32 @@
-<!doctype html><html><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/><title>MKTraders Dashboard</title><link rel='stylesheet' href='styles.css'></head><body><header class='site-header'><div class='brand'>MKTraders</div></header><main class='container'><h2>MKTraders Binary Dashboard</h2><div class='controls'><label>Mode: <select id='mode'><option value='demo'>Demo</option><option value='live'>Live</option></select></label><label>Symbol: <input id='symbol' value='R_100' /></label><label>Amount: <input id='amount' value='1' type='number' style='width:80px' /></label><label>Duration: <input id='duration' value='1' type='number' style='width:60px' /></label><button id='proposal'>Get Proposal</button><button id='buy' style='margin-left:8px'>Buy</button><button id='bal' style='margin-left:8px'>Check Balance</button></div><pre id='out' style='color:#9fb0c8'></pre></main><script src='script.js'></script></body></html>
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MKTraders Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="brand">MKTraders</div></header>
+  <main class="container">
+    <h2>MKTraders Binary Dashboard</h2>
+    <div class="controls">
+      <label>Mode:
+        <select id="mode">
+          <option value="demo">Demo</option>
+          <option value="live">Live</option>
+        </select>
+      </label>
+      <label>Symbol: <input id="symbol" value="R_100" /></label>
+      <label>Amount: <input id="amount" value="1" type="number" style="width:80px" /></label>
+      <label>Duration: <input id="duration" value="1" type="number" style="width:60px" /></label>
+      <button id="proposal">Get Proposal</button>
+      <button id="buy">Buy</button>
+      <button id="bal">Check Balance</button>
+    </div>
+    <pre id="out" class="output"></pre>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
