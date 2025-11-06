@@ -1,8 +1,0 @@
-
-:root{--bg:#071028;--card:#0f1724;--muted:#9fb0c8;--accent:#06b6d4;--text:#e6eef8}
-body{margin:0;font-family:Inter,system-ui,Arial;color:var(--text);background:var(--bg)}
-.site-header{padding:12px 20px;background:linear-gradient(90deg,#061426,#07182b);font-weight:700}
-.container{max-width:900px;margin:24px auto;padding:16px}
-.controls label{margin-right:8px}
-.brand{font-size:18px}
-.output{color:#9fb0c8;background:transparent;border:none;white-space:pre-wrap}
